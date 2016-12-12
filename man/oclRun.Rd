@@ -93,7 +93,7 @@ __kernel void dnorm(
   int i = get_global_id(0);
   if(i < count)
       output[i] = exp(-0.5f * ((input[i] - mu) / sigma) * ((input[i] - mu) / sigma))
-      / (sigma * sqrt( 2 * 3.14159265358979323846264338327950288 ) );
+      / (sigma * sqrt( (float) (2 * 3.14159265358979323846264338327950288) ) );
 };")
 k.dnorm <- oclSimpleKernel(d[[1]], "dnorm", code, "single")
 f <- function(x, mu=0, sigma=1, ...)
